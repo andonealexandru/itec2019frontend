@@ -26,6 +26,7 @@
 
 <script>
 import axios from 'axios'
+import store from '../store'
 
 export default {
   name: 'Login',
@@ -41,9 +42,13 @@ export default {
         lastName: '',
         email: ''
       },
-      authorization: '',
       userId: '',
       status: ''
+    }
+  },
+  computed: {
+    authorization () {
+      return store.state.authorization
     }
   },
   methods: {
@@ -66,6 +71,8 @@ export default {
       axios.post('https://itec2019rockthecode.herokuapp.com/users/login', this.form, axiosConfig)
         .then(function (response) {
           vm.authorization = response.headers['authorization']
+
+          store.commit("updateAuth(response.headers['authorization'])")
           vm.user.userId = response.headers['userid']
         })
         .catch(function (error) {
