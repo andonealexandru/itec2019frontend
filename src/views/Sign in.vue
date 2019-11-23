@@ -121,7 +121,6 @@ export default {
         })
         .catch(function (error) {
           vm.status = error
-          console.log(error.message)
         })
     }
   }

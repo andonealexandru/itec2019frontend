@@ -70,7 +70,6 @@ export default {
         })
         .catch(function (error) {
           vm.status = error
-          console.log(error)
         })
     },
     getUser () {
@@ -91,7 +90,7 @@ export default {
           vm.status = 'Welcome ' + vm.user.firstName + ' ' + vm.user.lastName + '!'
         })
         .catch(function (error) {
-          console.log(error)
+          vm.status = error
         })
     },
     deleteUser () {
@@ -109,7 +108,7 @@ export default {
           vm.status = 'User deleted'
         })
         .catch(function (error) {
-          console.log(error)
+          vm.status = error
         })
     }
   }
