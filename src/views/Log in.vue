@@ -130,7 +130,7 @@ export default {
 
 /* body */
 body {
-  background: #e9e9e9;
+  background: #cccccc;
   color: #5e5e5e;
   font: 400 87.5%/1.5em 'Open Sans', sans-serif;
 }
@@ -140,7 +140,7 @@ body {
 }
 /* Form Layout */
 .form-wrapper {
-  background: #fafafa;
+  background: #ffffff;
   margin: 3em auto;
   padding: 0 1em;
   max-width: 370px;
