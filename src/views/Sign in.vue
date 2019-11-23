@@ -24,30 +24,38 @@
       <input v-model="form.password" type="password" name="password" required="required" placeholder="Password" />
     </div>
     <div class="form-item">
+      <label for="city"></label>
+      <input v-model="form.city" type="text" name="city" required="required" placeholder="City" />
+    </div>
+    <div class="form-item">
       <label for="address"></label>
-      <input v-model="form.address" type="text" name="address" required="required" placeholder="address" />
+      <input v-model="form.address" type="text" name="address" required="required" placeholder="Address" />
     </div>
     <div class="form-item">
       <label for="building"></label>
-      <input v-model="form.building" type="text" name="building" required="required" placeholder="building" />
+      <input v-model="form.building" type="text" name="building" required="required" placeholder="Building" />
     </div>
     <div class="form-item">
       <label for="postalCode"></label>
-      <input v-model="form.postalCode" type="text" name="postalCode" required="postalCode" placeholder="postalCode" />
+      <input v-model="form.postalCode" type="text" name="postalCode" required="required" placeholder="Postal Code" />
     </div>
     <div>
-      <input type="radio" id="one" value="Private" v-model="form.type">
-      <label for="one">Private</label>
-      <input type="radio" id="two" value="Company" v-model="form.type">
-      <label for="two">Company</label>
       <br>
+      <h4 style="margin-left: -5px">Please, choose your status:</h4>
+      <br>
+      <div>
+    <b-form-group>
+      <b-form-radio class='priv' v-model="form.type" name="some-radios" value="A">Private</b-form-radio>
+      <b-form-radio class='comp' v-model="form.type" name="some-radios" value="B">Company</b-form-radio>
+    </b-form-group>
+  </div>
+      <br>
+      <h4 style="margin-left: -27px">Please, choose your role:</h4>
       <br>
     </div>
-    <div id='rolesSignIn'>
-      <input type="checkbox" id="buyer" value="Buyer" v-model="form.roles">
-      <label for="buyer">Buyer</label>
-      <input type="checkbox" id="seller" value="Seller" v-model="form.roles">
-      <label for="seller">Seller</label>
+    <div class='rolesSignIn'>
+    <b-form-checkbox type="checkbox" id="buyer" value="Buyer" v-model="form.roles">Buyer</b-form-checkbox>
+    <b-form-checkbox type="checkbox" id="seller" value="Seller" v-model="form.roles">Seller</b-form-checkbox>
       <br>
     </div>
     <div class="button-panel">
@@ -75,6 +83,7 @@ export default {
         lastName: '',
         email: '',
         phone: '',
+        city: '',
         address: '',
         building: '',
         postalCode: '',
@@ -89,6 +98,7 @@ export default {
         lastName: '',
         email: '',
         phone: '',
+        city: '',
         address: '',
         building: '',
         postalCode: '',
@@ -143,14 +153,22 @@ export default {
 
 /* body */
 body {
-  background: #e9e9e9;
+  background: #cccccc;
   color: #5e5e5e;
   font: 400 87.5%/1.5em 'Open Sans', sans-serif;
 }
-
+.priv{
+  margin-left: -220px;
+}
+.comp{
+  margin-left: -200px;
+}
+.rolesSignIn{
+  margin-left: -225px;
+}
 /* Form Layout */
 .form-wrapper {
-  background: #fafafa;
+  background:#ffffff;
   margin: 3em auto;
   padding: 0 1em;
   max-width: 370px;
