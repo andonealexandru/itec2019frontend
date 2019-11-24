@@ -210,7 +210,7 @@ form {
 }
 
 .button-panel .button {
-  background: #f16272;
+  background: #17a2b7;
   border: none;
   color: #fff;
   cursor: pointer;
@@ -225,7 +225,7 @@ form {
 }
 
 .button:hover {
-  background: #ee3e52;
+  background: #117888;
 }
 
 .form-footer {

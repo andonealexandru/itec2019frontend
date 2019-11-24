@@ -5,6 +5,7 @@ import Login from '../views/Log in'
 import Home from '../views/Home'
 import Profile from '../views/Profile'
 import List from '../views/List'
+import Add from '../views/Add'
 
 Vue.use(VueRouter)
 
@@ -33,6 +34,11 @@ const routes = [
     path: '/list',
     name: 'list',
     component: List
+  },
+  {
+    path: '/add',
+    name: 'add',
+    component: Add
   }
 ]
 
