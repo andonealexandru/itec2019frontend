@@ -8,10 +8,11 @@ export default new Vuex.Store({
   state: {
     isLoggedIn: false,
     authorization: '',
+    userId: '',
     user: {
       userId: '',
-      firstName: '',
-      lastName: '',
+      firstName: 'Blah',
+      lastName: 'Blah',
       email: '',
       phone: '',
       city: '',
@@ -19,12 +20,25 @@ export default new Vuex.Store({
       building: '',
       postalCode: '',
       type: ''
-    }
+    },
+    viewType: ''
   },
   plugins: [createPersistedState()],
   mutations: {
-    updateAuth: (state, auth) => {
-      state.authorization = auth
+    setAuthorization (state, s) {
+      state.authorization = s
+    },
+    setUserId (state, s) {
+      state.userId = s
+    },
+    setIsLoggedIn (state, b) {
+      state.isLoggedIn = b
+    },
+    setViewType (state, s) {
+      state.viewType = s
+    },
+    setUser (state, obj) {
+      state.user = obj
     }
   }
 })

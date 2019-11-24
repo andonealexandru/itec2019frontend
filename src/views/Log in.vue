@@ -40,15 +40,26 @@ export default {
         userId: '',
         firstName: '',
         lastName: '',
-        email: ''
+        email: '',
+        phone: '',
+        city: '',
+        address: '',
+        building: '',
+        postalCode: '',
+        type: ''
       },
-      userId: '',
       status: ''
     }
   },
   computed: {
-    authorization () {
-      return store.state.authorization
+    getAuthorization () {
+      return this.$store.state.authorization
+    },
+    getUserId () {
+      return this.$store.state.userId
+    },
+    getState () {
+      return this.$store.state.isLoggedIn
     }
   },
   methods: {
@@ -64,16 +75,15 @@ export default {
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json'
-        },
-        timeout: 1500
+        }
       }
 
       axios.post('https://itec2019rockthecode.herokuapp.com/users/login', this.form, axiosConfig)
         .then(function (response) {
-          vm.authorization = response.headers['authorization']
-
-          store.commit("updateAuth(response.headers['authorization'])")
-          vm.user.userId = response.headers['userid']
+          store.commit('setUserId', response.headers['userid'])
+          store.commit('setAuthorization', response.headers['authorization'])
+          store.commit('setIsLoggedIn', true)
+          vm.getUser()
         })
         .catch(function (error) {
           vm.status = error
@@ -84,17 +94,16 @@ export default {
 
       let axiosConfig = {
         headers: {
-          'Authorization': vm.authorization,
+          'Authorization': vm.getAuthorization,
           'Accept': 'application/json'
-        },
-        timeout: 1500
+        }
       }
 
-      axios.get('https://itec2019rockthecode.herokuapp.com/loginapp/users/' + vm.user.userId, axiosConfig)
+      axios.get('https://itec2019rockthecode.herokuapp.com/users/' + vm.getUserId, axiosConfig)
         .then(function (response) {
           vm.user = response.data
-
           vm.status = 'Welcome ' + vm.user.firstName + ' ' + vm.user.lastName + '!'
+          store.commit('setUser', response.data)
         })
         .catch(function (error) {
           vm.status = error

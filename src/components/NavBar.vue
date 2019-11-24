@@ -15,12 +15,15 @@
           <b-button size="sm" class="my-2 my-sm-0" type="submit">Search</b-button>
         </b-nav-form>
 
-        <b-nav-item-dropdown right>
-          <template v-slot:button-content>
-            <em>User</em>
+        <b-nav-item v-if="!getState" size="sm" class="my-2 my-sm-0" @click="goToSignIn">Sign in</b-nav-item>
+        <b-nav-item v-if="!getState" size="sm" class="my-2 my-sm-0" @click="goToLogIn">Log in</b-nav-item>
+
+        <b-nav-item-dropdown right v-if="getState">
+          <template v-slot:button-content v-if="getState">
+            <em>{{ getUser.firstName + " " + getUser.lastName }}</em>
           </template>
-          <b-dropdown-item @click="goToSignIn">Sign in</b-dropdown-item>
-          <b-dropdown-item @click="goToLogIn">Log in</b-dropdown-item>
+          <b-dropdown-item @click="signOut">Sign out</b-dropdown-item>
+          <b-dropdown-item @click="goToProfile">Profile</b-dropdown-item>
         </b-nav-item-dropdown>
       </b-navbar-nav>
     </b-collapse>
@@ -28,7 +31,17 @@
 </template>
 
 <script>
+import store from '../store'
+
 export default {
+  computed: {
+    getState () {
+      return this.$store.state.isLoggedIn
+    },
+    getUser () {
+      return this.$store.state.user
+    }
+  },
   methods: {
     goToLogIn () {
       this.$router.push({ name: 'login' })
@@ -38,6 +51,14 @@ export default {
     },
     goToHome () {
       this.$router.push({ name: 'home' })
+    },
+    signOut () {
+      store.commit('setUserId', '')
+      store.commit('setAuthorization', '')
+      store.commit('setIsLoggedIn', false)
+    },
+    goToProfile () {
+      this.$router.push({ name: 'profile' })
     }
   }
 }

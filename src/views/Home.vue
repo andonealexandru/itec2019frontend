@@ -1,7 +1,7 @@
 <template>
   <div id="home">
   <b-card-group>
-    <div v-for="product in products" :key="product" class="cards">
+    <div v-for="product in products" :key="product.userId" class="cards">
     <CardView
       :product="product"
     />
@@ -13,13 +13,24 @@
 <script>
 /* eslint-disable */
 import CardView from '../components/CardViewCard'
+import store from '../store'
 
 export default {
   name: "home",
   components: {
     CardView
   },
-  data() {
+  computed: {
+    getViewType () {
+      return this.$store.state.viewType
+    }
+  },
+  methods: {
+    changeViewType (s) {
+      store.commit('setViewType', s);
+    }
+  },
+  data () {
     return {
       products: [
         {
